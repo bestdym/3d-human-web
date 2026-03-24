@@ -6,13 +6,14 @@ import * as THREE from 'three'
 // Holographic material that overrides ALL original materials
 function applyHolographicMaterial(scene, options = {}) {
   const {
-    color = '#c8d8ff',
-    emissive = '#2255ff',
-    emissiveIntensity = 0.2, // lowered emissive to see inside better
-    roughness = 0.35,       // increased roughness to reduce glossiness
-    metalness = 0.15,       // lowered metalness
-    opacity = 0.35,         // far more transparent
-    transmission = 0.9,     // high transmission (glassy)
+    color = '#446699',      // Darker base to avoid glowing like a lightbulb
+    emissive = '#1133aa',   // Darker emissive tint
+    emissiveIntensity = 0.05, // Minimal glow
+    roughness = 0.8,        // Base matte finish
+    metalness = 0.0,
+    opacity = 0.12,         // Slightly more transparent
+    transmission = 0.0,
+    envMapIntensity = 0.5,  // Reflect environment for glass sheen
   } = options
 
   scene.traverse((child) => {
@@ -26,9 +27,9 @@ function applyHolographicMaterial(scene, options = {}) {
         transparent: true,
         opacity,
         transmission,
-        envMapIntensity: 1.0,
-        clearcoat: 0.2,
-        clearcoatRoughness: 0.3,
+        envMapIntensity,
+        clearcoat: 0.6, // Lightweight glass-like shell
+        clearcoatRoughness: 0.15, // Smooth glass reflections
         side: THREE.FrontSide,
         depthWrite: false, // critical for rendering internal organs correctly
       })
@@ -49,7 +50,7 @@ function MaleModel({ visible }) {
     if (!ref.current) return
     ref.current.traverse(c => {
       if (c.isMesh && c.material) {
-        c.material.opacity = THREE.MathUtils.lerp(c.material.opacity, visible ? 0.35 : 0, 0.06)
+        c.material.opacity = THREE.MathUtils.lerp(c.material.opacity, visible ? 0.2 : 0, 0.25)
       }
     })
   })
@@ -72,13 +73,14 @@ function FemaleModel({ visible }) {
 
   useEffect(() => {
     applyHolographicMaterial(scene, {
-      color: '#d8c8ff',
-      emissive: '#8855ff',
-      emissiveIntensity: 0.25,
-      roughness: 0.35,
-      metalness: 0.15,
-      opacity: 0.35,
-      transmission: 0.9,
+      color: '#554499',
+      emissive: '#3311aa',
+      emissiveIntensity: 0.05,
+      roughness: 0.8,
+      metalness: 0.0,
+      opacity: 0.12,
+      envMapIntensity: 0.5,
+      transmission: 0.0, // Disabled for perf
     })
   }, [scene])
 
@@ -86,7 +88,7 @@ function FemaleModel({ visible }) {
     if (!ref.current) return
     ref.current.traverse(c => {
       if (c.isMesh && c.material) {
-        c.material.opacity = THREE.MathUtils.lerp(c.material.opacity, visible ? 0.35 : 0, 0.06)
+        c.material.opacity = THREE.MathUtils.lerp(c.material.opacity, visible ? 0.2 : 0, 0.25)
       }
     })
   })

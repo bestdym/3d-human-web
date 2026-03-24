@@ -1,7 +1,7 @@
 export default function Sidebar({ organs, activeOrgan, onSelect, onHover }) {
   // Sidebar items matched with Organs array
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${activeOrgan ? 'hidden' : ''}`}>
       <div className="sidebar-title">EXPLORE CATEGORIES</div>
       {organs.map((organ) => {
         const isActive = activeOrgan === organ.id

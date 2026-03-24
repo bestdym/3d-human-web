@@ -62,20 +62,19 @@ function InternalOrganMesh({ organ, isVisible, isActive }) {
   useFrame((state, delta) => {
     const targetParams = isVisible ? activeParams : inactiveParams
     
-    // Breathing effect (pulsing emissive intensity between 1.0 and 2.5)
-    const breath = (Math.sin(state.clock.elapsedTime * 3.5) + 1) / 2 // 0.0 to 1.0
-    const targetEmissiveIntensity = isVisible ? THREE.MathUtils.lerp(1.0, 2.5, breath) : 0.0
+    // Pulsating Emission (Breathing Glow): Modulates inner light rhythmically without rubber-banding mesh
+    const breath = (Math.sin(state.clock.elapsedTime * 2.0) + 1) / 2 // 0.0 to 1.0, slower, natural rhythm
+    const dynamicEmissiveIntensity = isActive ? THREE.MathUtils.lerp(0.8, 2.5, breath) : (isVisible ? targetParams.emissiveIntensity : 0.0)
     
-    materialRef.current.color.lerp(targetParams.color, 0.1)
-    materialRef.current.emissive.lerp(targetParams.emissive, 0.1)
-    materialRef.current.emissiveIntensity = THREE.MathUtils.lerp(materialRef.current.emissiveIntensity, targetEmissiveIntensity, 0.1)
-    materialRef.current.opacity = THREE.MathUtils.lerp(materialRef.current.opacity, targetParams.opacity, 0.1)
-    materialRef.current.transmission = THREE.MathUtils.lerp(materialRef.current.transmission, targetParams.transmission, 0.1)
+    const speed = 0.25 // Mempercepat transisi hide/show (tadinya 0.1)
+    materialRef.current.color.lerp(targetParams.color, speed)
+    materialRef.current.emissive.lerp(targetParams.emissive, speed)
+    materialRef.current.emissiveIntensity = THREE.MathUtils.lerp(materialRef.current.emissiveIntensity, dynamicEmissiveIntensity, speed)
+    materialRef.current.opacity = THREE.MathUtils.lerp(materialRef.current.opacity, targetParams.opacity, speed)
+    materialRef.current.transmission = THREE.MathUtils.lerp(materialRef.current.transmission, targetParams.transmission, speed)
     
-    // Add subtle floating to active organ to make it pop
-    if (ref.current && isActive) {
-      ref.current.scale.setScalar(organ.scale + Math.sin(state.clock.elapsedTime * 2) * 0.005)
-    } else if (ref.current) {
+    // Ensure scale stays strictly uniform (removed physical balloon-like mesh expansion)
+    if (ref.current) {
       ref.current.scale.setScalar(organ.scale)
     }
   })
@@ -91,13 +90,14 @@ function InternalOrganMesh({ organ, isVisible, isActive }) {
   )
 }
 
-export default function InternalOrgans({ models, categories, activeCategoryId, hoveredCategoryId }) {
+export default function InternalOrgans({ models, categories, activeCategoryId, hoveredCategoryId, activeSubHotspotId }) {
   
   const getVisibleModelIds = () => {
     const activeCat = categories.find(c => c.id === activeCategoryId)
     const hoveredCat = categories.find(c => c.id === hoveredCategoryId)
     
     const visibleIds = new Set()
+    
     if (activeCat && activeCat.shows) activeCat.shows.forEach(id => visibleIds.add(id))
     if (hoveredCat && hoveredCat.shows) hoveredCat.shows.forEach(id => visibleIds.add(id))
     return visibleIds
