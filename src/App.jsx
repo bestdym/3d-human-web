@@ -111,20 +111,22 @@ const CATEGORIES = [
   {
     id: 'toxins',
     label: 'Toxins',
-    icon: '🦠',
+    icon: '🧪',
     position: [-0.07, 0.80, 0.1],
-    shows: ['liver', 'kidney']
+    shows: ['liver', 'kidney'],
+    subHotspots: [
+      { id: 'toxins_panel', label: 'Toxins Panel', position: [-0.15, 0.72, 0.15], focusOrgan: 'liver' }
+    ]
   },
   {
     id: 'gut_health',
     label: 'Gut Health',
-    icon: '🩻',
+    icon: '🦠',
     position: [-0.05, 0.65, 0.1], // Pusat kamera dinaikkan ke atas
     shows: ['intestine', 'kidney', 'liver'],
     subHotspots: [
       { id: 'food', label: 'Food Sensitivity', position: [-0.05, 0.82, 0.12], focusOrgan: 'intestine' },
-      { id: 'gutzoomer', label: 'Gut Zoomer', position: [0.08, 0.65, 0.12], focusOrgan: 'intestine' },
-      { id: 'toxins_panel', label: 'Toxins Pannel', position: [-0.15, 0.72, 0.15], focusOrgan: 'liver' }
+      { id: 'gutzoomer', label: 'Gut Zoomer', position: [0.08, 0.65, 0.12], focusOrgan: 'intestine' }
     ]
   },
   {
@@ -162,10 +164,12 @@ function CameraAnimator({ activeCategoryId, activeSubHotspotId, categories, cont
     const activeData = categories.find(c => c.id === activeCategoryId)
     if (activeData) {
       const zoomZ = activeData.zoomOffset !== undefined ? activeData.zoomOffset : 1.0
-      
+
       if (activeSubHotspotId) {
-        // Shift camera look target to the left (subtracting positive shiftX), so the organ renders on the right side
-        const shiftX = 0.35
+        // Shift camera proportionally to the zoom level so extremely zoomed models (like the Longevity Cell) aren't pushed completely off the visible screen frustum
+        const dynamicShift = 0.35 * zoomZ
+        const shiftX = Math.min(Math.max(dynamicShift, 0.08), 0.35)
+
         targetLook.current.set(activeData.position[0] - shiftX, activeData.position[1], activeData.position[2])
         targetPos.current.set(activeData.position[0] - shiftX, activeData.position[1] - 0.05, activeData.position[2] + zoomZ * 0.9)
       } else {
@@ -197,18 +201,18 @@ function CameraAnimator({ activeCategoryId, activeSubHotspotId, categories, cont
       // Apply smooth Camera Positional Sway Parallax (No Object Rotation)
       // Sengaja dikunci sangat kaku (0.015) saat belum Overview agar tombol yang letaknya di pinggir seperti Longevity gampang diklik (menghindari "cat and mouse")
       const swayFactor = activeSubHotspotId ? 0.3 : 0.015
-      
+
       const parallaxX = state.pointer.x * swayFactor
       const parallaxY = state.pointer.y * swayFactor
-      
+
       const finalPosX = targetPos.current.x + parallaxX
       const finalPosY = targetPos.current.y + parallaxY
-      
+
       // Damp camera position directly with snappy time configuration (0.2)
       easing.damp3(state.camera.position, [finalPosX, finalPosY, targetPos.current.z], 0.2, delta)
       controlsRef.current.target.copy(targetLook.current)
     }
-    
+
     controlsRef.current.update()
   })
 
@@ -305,11 +309,11 @@ export default function App() {
 
             <Environment preset="studio" />
 
-            <CameraAnimator 
-              activeCategoryId={activeOrgan} 
+            <CameraAnimator
+              activeCategoryId={activeOrgan}
               activeSubHotspotId={activeSubHotspot}
-              categories={CATEGORIES} 
-              controlsRef={controlsRef} 
+              categories={CATEGORIES}
+              controlsRef={controlsRef}
             />
 
             <ParallaxGroup isOverview={!!activeSubHotspot}>
@@ -427,10 +431,10 @@ export default function App() {
 
       {/* Sub-Hotspot Info Sidebar */}
       {activeSubHotspot && (
-        <SubHotspotInfoView 
-          subHotspotId={activeSubHotspot} 
-          categoryData={CATEGORIES.find(c => c.id === activeOrgan)} 
-          onClose={closeSubHotspot} 
+        <SubHotspotInfoView
+          subHotspotId={activeSubHotspot}
+          categoryData={CATEGORIES.find(c => c.id === activeOrgan)}
+          onClose={closeSubHotspot}
         />
       )}
     </div>
