@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function HormonePanel() {
+export default function HormonePanel({ onGoToOverview }) {
   return (
     <>
       <h1 className="panel-title">
@@ -152,6 +152,18 @@ export default function HormonePanel() {
               <li>DHEA supplements boost DHEA levels by directly increasing the availability of this hormone in the bloodstream.</li>
               <li>This supplemental DHEA is absorbed into the body and, once in circulation, contributes to higher overall DHEA concentrations.</li>
             </ul>
+          </div>
+        </div>
+        
+        <div className="next-button-container" onClick={onGoToOverview}>
+          <div className="next-content">
+            <span className="next-label">NEXT</span>
+            <span className="next-title">Hormone Deficiency Assessment</span>
+          </div>
+          <div className="next-arrow-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
           </div>
         </div>
         

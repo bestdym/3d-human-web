@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function OxidativeStressPanel() {
+export default function OxidativeStressPanel({ onGoToOverview }) {
   return (
     <>
       <h1 className="panel-title">
@@ -139,6 +139,18 @@ export default function OxidativeStressPanel() {
             <ul className="protocol-bullets">
               <li>Selenium supplements decrease 8-Hydroxyguanine by supporting the activity of selenoproteins, such as glutathione peroxidase, which reduce oxidative stress and limit DNA damage, including 8-Hydroxyguanine formation.</li>
             </ul>
+          </div>
+        </div>
+        
+        <div className="next-button-container" onClick={onGoToOverview}>
+          <div className="next-content">
+            <span className="next-label">NEXT</span>
+            <span className="next-title">Oxidative Stress Assessment</span>
+          </div>
+          <div className="next-arrow-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
           </div>
         </div>
         

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function GutPermeabilityPanel() {
+export default function GutPermeabilityPanel({ onGoToOverview }) {
   return (
     <>
       <h1 className="panel-title">
@@ -151,6 +151,18 @@ export default function GutPermeabilityPanel() {
             <ul className="protocol-bullets">
               <li>Reduces zonulin release and inflammation</li>
             </ul>
+          </div>
+        </div>
+        
+        <div className="next-button-container" onClick={onGoToOverview}>
+          <div className="next-content">
+            <span className="next-label">NEXT</span>
+            <span className="next-title">Gut Zoomer Assessment</span>
+          </div>
+          <div className="next-arrow-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
           </div>
         </div>
         
