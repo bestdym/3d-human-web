@@ -24,9 +24,11 @@
 html,
 body,
 #root {
-  width: 100%;
-  height: 100%;
-  /* Removed global overflow: hidden to allow scrolling on multi-page structure */
+  width: 100vw;
+  height: 100dvh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Lock viewport scrolling completely */
   font-family: 'Inter', sans-serif;
   background: linear-gradient(135deg, var(--bg-grad-1) 0%, var(--bg-grad-2) 55%, var(--bg-grad-3) 100%);
 }
@@ -251,6 +253,9 @@ body,
 .canvas-container {
   position: absolute;
   inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  touch-action: none; /* Disable pull-to-refresh and page swiping */
 }
 
 /* ---- HEADER ---- */
@@ -2082,13 +2087,13 @@ body,
   /* Push the 3D scene down so the model head clears the pill bar */
   .canvas-container {
     top: 60px;
-    height: calc(100% - 60px);
+    height: calc(100dvh - 60px);
   }
 
   /* Sub-hotspot mode: organ fills the full screen then panel slides from bottom */
   .subhotspot-active .canvas-container {
     top: 0;
-    height: 100%;
+    height: 100dvh;
   }
 
   /* ── Mobile top-left bar alignment fixes ── */
@@ -2224,7 +2229,7 @@ body,
     bottom: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     max-width: none;
     border-radius: 0;
     border: none;
@@ -2234,12 +2239,15 @@ body,
     -webkit-backdrop-filter: none;
     box-shadow: none;
     pointer-events: none;
+    position: absolute;
+    z-index: 50;
+    overflow: hidden; /* Lock parent constraint */
   }
 
   .panel-scroll-area {
     padding: 45vh 0 0 0;
-    height: 100%;
-    overflow-y: auto;
+    height: 100%; /* Fills parent 100dvh */
+    overflow-y: auto; /* Sole scrollable area */
     pointer-events: auto;
   }
 
