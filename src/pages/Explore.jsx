@@ -9,7 +9,8 @@ import OrganHotspots from '../components/OrganHotspots'
 import Sidebar from '../components/Sidebar'
 import InternalOrgans from '../components/InternalOrgans'
 import SubHotspotInfoView from '../components/SubHotspotInfoView'
-import ParticleBg from '../components/ParticleBg'
+import BubbleBg from '../components/BubbleBg'
+import CrosshairCursor from '../components/CrosshairCursor'
 import '../index.css'
 import { useNavigate } from 'react-router-dom'
 import { Home } from 'lucide-react'
@@ -322,14 +323,17 @@ export default function Explore() {
 
   return (
     <div className="app-wrapper explore-page">
+      {/* Crosshair cursor – top of everything */}
+      <CrosshairCursor />
+
       {/* Loading screen */}
       <div className={`loading-screen${loaded ? ' hidden' : ''}`}>
         <div className="loading-spinner" />
         <div className="loading-text">Loading 3D Experience…</div>
       </div>
 
-      {/* Particle CSS background */}
-      <ParticleBg />
+      {/* Animated bubble gradient background */}
+      <BubbleBg />
 
       {/* Floating Home Button */}
       {!activeOrgan && (
@@ -341,15 +345,9 @@ export default function Explore() {
       {/* Logo */}
       <div className="logo">
         <div className="logo-icon">
-          {/* A simple placeholder logo icon matching VibrantWellness (3 dots) */}
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="6" r="3" fill="#1a1a3a" />
-            <circle cx="6" cy="16" r="3" fill="#1a1a3a" />
-            <circle cx="18" cy="16" r="3" fill="#1a1a3a" />
-            <path d="M12 9L7 14M12 9L17 14M7 14L17 14" stroke="#1a1a3a" strokeWidth="2" strokeLinecap="round" />
-          </svg>
+          <img src="/somalab_logo.png" alt="SomaLab" style={{ height: '32px', objectFit: 'contain' }} />
         </div>
-        <div className="logo-text">Vibrant<span>Wellness</span></div>
+        <div className="logo-text">Soma<span>Lab</span></div>
       </div>
 
       {/* Sex toggle header */}

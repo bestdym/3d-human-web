@@ -5,10 +5,10 @@ export default function About() {
     <PageTransition>
       <div className="page-container standard-page">
         <div className="content-wrapper">
-          <h2>Tentang Vibrant Wellness</h2>
+          <h2>Tentang SomaLab</h2>
           <div className="text-content">
             <p>
-              Vibrant Wellness adalah inisiatif edukasi kesehatan digital yang bertujuan untuk memberikan visualisasi 
+              SomaLab adalah inisiatif edukasi kesehatan digital yang bertujuan untuk memberikan visualisasi 
               anatomi dan fungsi tubuh manusia yang paling akurat namun mudah diakses.
             </p>
             <p>

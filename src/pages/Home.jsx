@@ -91,7 +91,7 @@ export default function Home() {
         <section className="discover-section">
           <div className="discover-content">
             <div className="discover-header">
-              <h2>Why Choose VibrantWellness?</h2>
+              <h2>Why Choose SomaLab?</h2>
               <p>Our platform goes beyond traditional 2D textbooks, offering an unprecedented level of clinical depth and interactivity.</p>
             </div>
             
@@ -119,7 +119,7 @@ export default function Home() {
         <footer className="home-footer">
           <div className="footer-content">
             <div className="footer-brand">
-              <h3>Vibrant<span>Wellness</span></h3>
+              <h3>Soma<span>Lab</span></h3>
               <p>Empowering preventative healthcare through immersive 3D clinical visualization.</p>
             </div>
             <div className="footer-links">
@@ -136,7 +136,7 @@ export default function Home() {
             </div>
           </div>
           <div className="footer-bottom">
-            <p>&copy; {new Date().getFullYear()} VibrantWellness. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} SomaLab. All rights reserved.</p>
           </div>
         </footer>
       </div>

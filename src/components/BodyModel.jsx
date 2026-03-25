@@ -59,7 +59,7 @@ function MaleModel({ visible }) {
     <primitive
       ref={ref}
       object={scene}
-      scale={[0.12, 0.12, 0.12]}
+      scale={[0.13, 0.12, 0.13]}
       position={[0, -1.6, 0]}
       rotation={[0, 0, 0]}
       visible={true}

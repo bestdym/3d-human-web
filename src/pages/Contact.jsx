@@ -28,7 +28,7 @@ export default function Contact() {
             <div className="contact-info">
               <h3>Detail Kontak</h3>
               <p>📍 Gedung Kesehatan, Jakarta, Indonesia</p>
-              <p>📧 support@vibrantwellness.id</p>
+              <p>📧 support@somalab.id</p>
               <p>📞 +62 811 2345 6789</p>
             </div>
           </div>
