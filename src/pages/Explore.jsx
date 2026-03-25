@@ -94,7 +94,7 @@ const CATEGORIES = [
     icon: '♂️',
     position: [0, 1.21, 0.04],
     shows: ['brain', 'kidney'],
-    zoomOffset: 3.2, // Ditarik mundur supaya tidak terlalu dekat
+    zoomOffset: 4.8, // Ditarik lebih jauh lagi mundurnya karena otak+ginjal terlalu besar pas di-zoom
     subHotspots: [
       { id: 'hormone_z', label: 'Hormones Zoomer', position: [0.12, 1.65, 0.15], focusOrgan: 'brain' } // Pituitary gland
     ]
@@ -125,6 +125,7 @@ const CATEGORIES = [
     icon: '🦠',
     position: [-0.05, 0.65, 0.1], // Pusat kamera dinaikkan ke atas
     shows: ['intestine', 'kidney', 'liver'],
+    zoomOffset: 2.5, // Ditarik mundur sedikit agar gabungan organ saluran cerna tidak kepotong
     subHotspots: [
       { id: 'food', label: 'Food Sensitivity', position: [-0.05, 0.82, 0.12], focusOrgan: 'intestine' },
       { id: 'gutzoomer', label: 'Gut Zoomer', position: [0.08, 0.65, 0.12], focusOrgan: 'intestine' }
