@@ -1957,6 +1957,13 @@ body,
 
 @media (max-width: 768px) {
   .desktop-only { display: none !important; }
+  .crosshair-root { display: none !important; }
+
+  /* Push the 3D scene down so the model head clears the pill bar */
+  .canvas-container {
+    top: 60px;
+    height: calc(100% - 60px);
+  }
 
   /* ── Mobile top-left bar alignment fixes ── */
 
