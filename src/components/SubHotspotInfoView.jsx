@@ -11,6 +11,10 @@ import GutPermeabilityPanel from './panels/GutPermeabilityPanel'
 import GutEstrogenPanel from './panels/GutEstrogenPanel'
 import OxidativeStressPanel from './panels/OxidativeStressPanel'
 import NeuralOverviewPanel from './panels/NeuralOverviewPanel'
+import NeurotransmitterOverviewPanel from './panels/NeurotransmitterOverviewPanel'
+import HormoneOverviewPanel from './panels/HormoneOverviewPanel'
+import CardioOverviewPanel from './panels/CardioOverviewPanel'
+import ToxinsOverviewPanel from './panels/ToxinsOverviewPanel'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -151,8 +155,9 @@ export default function SubHotspotInfoView({ subHotspotId, categoryData, onClose
           <div className="nav-pill-container">
             <span className="nav-subtitle">
               {subData.id === 'hormone_z' ? 'Hormone Zoomer:' : 
-               subData.id === 'toxins_panel' ? 'Tox Zoomer:' : 
+               subData.id === 'toxins_panel' ? 'Toxins Panel:' : 
                subData.id === 'oxi' ? 'Oxi Zoomer:' : 
+               subData.id === 'neurotrans' ? 'Neurotransmitters Panel:' :
                'Neural Zoomer Plus:'}
             </span>
             {showOverview ? (
@@ -212,22 +217,26 @@ export default function SubHotspotInfoView({ subHotspotId, categoryData, onClose
         <div className="panel-scroll-area" ref={scrollerRef}>
           <div className="scroll-content-wrapper" ref={contentRef}>
             {showOverview ? (
-              (subData.id === 'neural' || subData.id === 'neurotrans') ? <NeuralOverviewPanel /> : 
+              subData.id === 'neural' ? <NeuralOverviewPanel /> :
+              subData.id === 'neurotrans' ? <NeurotransmitterOverviewPanel /> :
+              subData.id === 'hormone_z' ? <HormoneOverviewPanel /> :
+              subData.id === 'cardio' ? <CardioOverviewPanel /> :
+              subData.id === 'toxins_panel' ? <ToxinsOverviewPanel /> :
               <div style={{padding: '40px', fontFamily: 'Inter', fontSize: '18px', color: '#1a1a3a'}}>Test overview coming soon...</div>
             ) : subData.id === 'neurotrans' ? (
-              <NeurotransmitterPanel />
+              <NeurotransmitterPanel onGoToOverview={() => setShowOverview(true)} />
             ) : subData.id === 'hormone_z' ? (
-              <HormonePanel />
+              <HormonePanel onGoToOverview={() => setShowOverview(true)} />
             ) : subData.id === 'toxins_panel' ? (
-              <ToxinsPanel />
+              <ToxinsPanel onGoToOverview={() => setShowOverview(true)} />
             ) : subData.id === 'oxi' ? (
-              <OxidativeStressPanel />
+              <OxidativeStressPanel onGoToOverview={() => setShowOverview(true)} />
             ) : subData.id === 'cardio' ? (
-              activeCardioTab === 'endothelial' ? <CardioEndothelialPanel /> : <CardioMetabolicPanel />
+              activeCardioTab === 'endothelial' ? <CardioEndothelialPanel onGoToOverview={() => setShowOverview(true)} /> : <CardioMetabolicPanel onGoToOverview={() => setShowOverview(true)} />
             ) : subData.id === 'gutzoomer' ? (
-              activeGutTab === 'permeability' ? <GutPermeabilityPanel /> : <GutEstrogenPanel />
+              activeGutTab === 'permeability' ? <GutPermeabilityPanel onGoToOverview={() => setShowOverview(true)} /> : <GutEstrogenPanel onGoToOverview={() => setShowOverview(true)} />
             ) : (
-              <MildDemyelinationPanel />
+              <MildDemyelinationPanel onGoToOverview={() => setShowOverview(true)} />
             )}
           </div>
         </div>
