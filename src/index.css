@@ -28,7 +28,8 @@ body,
   height: 100dvh;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Lock viewport scrolling completely */
+  overflow: hidden;
+  /* Lock viewport scrolling completely */
   font-family: 'Inter', sans-serif;
   background: linear-gradient(135deg, var(--bg-grad-1) 0%, var(--bg-grad-2) 55%, var(--bg-grad-3) 100%);
 }
@@ -255,7 +256,8 @@ body,
   inset: 0;
   width: 100vw;
   height: 100dvh;
-  touch-action: none; /* Disable pull-to-refresh and page swiping */
+  touch-action: none;
+  /* Disable pull-to-refresh and page swiping */
 }
 
 /* ---- HEADER ---- */
@@ -2241,19 +2243,23 @@ body,
     pointer-events: none;
     position: absolute;
     z-index: 50;
-    overflow: hidden; /* Lock parent constraint */
+    overflow: hidden;
+    /* Lock parent constraint */
   }
 
   .panel-scroll-area {
-    padding: 45vh 0 0 0;
-    height: 100%; /* Fills parent 100dvh */
-    overflow-y: auto; /* Sole scrollable area */
+    padding: 60vh 0 0 0;
+    height: 100%;
+    /* Fills parent 100dvh */
+    overflow-y: auto;
+    /* Sole scrollable area */
     pointer-events: auto;
   }
 
   .scroll-content-wrapper {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(240, 245, 255, 0.15) 100%);
-    backdrop-filter: blur(4px); /* Dikurangi blurnya agar organ tetap tajam */
+    backdrop-filter: blur(4px);
+    /* Dikurangi blurnya agar organ tetap tajam */
     -webkit-backdrop-filter: blur(4px);
     border-radius: 40px 40px 0 0;
     padding: 30px 24px 100px 24px;
