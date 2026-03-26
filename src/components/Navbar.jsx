@@ -30,13 +30,13 @@ export default function Navbar() {
       <div className="navbar-container">
         {/* Logo Section */}
         <Link to="/" className="navbar-logo" onClick={() => setIsOpen(false)}>
-          <img src="/somalab_logo.png" alt="SomaLab" style={{ height: '32px', objectFit: 'contain' }} />
+          <img src="/somalab_logo.png" alt="SomaLab" style={{ height: '28px', objectFit: 'contain' }} />
           <span className="logo-text">Soma<span>Lab</span></span>
         </Link>
 
         {/* Hamburger Button */}
         <button
-          className="navbar-toggle"
+          className={`navbar-toggle${isOpen ? ' is-active' : ''}`}
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
