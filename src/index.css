@@ -258,6 +258,13 @@ body,
   height: 100dvh;
   touch-action: none;
   /* Disable pull-to-refresh and page swiping */
+  /* Force a separate GPU compositing layer so backdrop-filter on overlaid
+     CSS elements does NOT bleed into / blur the WebGL canvas. This is
+     especially important in Vite production builds on mobile Safari/Chrome. */
+  isolation: isolate;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
 }
 
 /* ---- HEADER ---- */
