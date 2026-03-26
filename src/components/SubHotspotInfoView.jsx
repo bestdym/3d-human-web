@@ -47,11 +47,19 @@ export default function SubHotspotInfoView({ subHotspotId, categoryData, onClose
   const [activeCardioTab, setActiveCardioTab] = useState('endothelial')
   const [activeGutTab, setActiveGutTab] = useState('permeability')
   const [showOverview, setShowOverview] = useState(false)
+  const [panelKey, setPanelKey] = useState(0)
+
+  // Helper to change tab/overview and trigger animation
+  const switchTo = (fn) => {
+    fn()
+    setPanelKey(k => k + 1)
+  }
 
   useEffect(() => {
     setActiveCardioTab('endothelial')
     setActiveGutTab('permeability')
     setShowOverview(false)
+    setPanelKey(k => k + 1)
   }, [subHotspotId])
 
   // Explicit Video Loader to aggressively bypass Browser AutoPlay safety blocks
@@ -115,21 +123,21 @@ export default function SubHotspotInfoView({ subHotspotId, categoryData, onClose
             <span className="nav-subtitle">Cardio Zoomer:</span>
             {showOverview ? (
               <>
-                <span className="nav-inactive-btn" onClick={() => { setActiveCardioTab('endothelial'); setShowOverview(false); }} style={{cursor: 'pointer'}}>The Endothelial Dysfunction</span>
-                <span className="nav-inactive-btn" onClick={() => { setActiveCardioTab('metabolic'); setShowOverview(false); }} style={{cursor: 'pointer'}}>The Metabolic Syndrome</span>
+                <span className="nav-inactive-btn" onClick={() => switchTo(() => { setActiveCardioTab('endothelial'); setShowOverview(false); })}>The Endothelial Dysfunction</span>
+                <span className="nav-inactive-btn" onClick={() => switchTo(() => { setActiveCardioTab('metabolic'); setShowOverview(false); })}>The Metabolic Syndrome</span>
                 <div className="nav-active-btn">Test Overview</div>
               </>
             ) : activeCardioTab === 'endothelial' ? (
               <>
                 <div className="nav-active-btn">The Endothelial Dysfunction</div>
-                <span className="nav-inactive-btn" onClick={() => setActiveCardioTab('metabolic')} style={{cursor: 'pointer'}}>The Metabolic Syndrome</span>
-                <span className="nav-inactive-btn" onClick={() => setShowOverview(true)} style={{cursor: 'pointer'}}>Test Overview</span>
+                <span className="nav-inactive-btn" onClick={() => switchTo(() => setActiveCardioTab('metabolic'))}>The Metabolic Syndrome</span>
+                <span className="nav-inactive-btn" onClick={() => switchTo(() => setShowOverview(true))}>Test Overview</span>
               </>
             ) : (
               <>
-                <span className="nav-inactive-btn" onClick={() => setActiveCardioTab('endothelial')} style={{cursor: 'pointer'}}>The Endothelial Dysfunction</span>
+                <span className="nav-inactive-btn" onClick={() => switchTo(() => setActiveCardioTab('endothelial'))}>The Endothelial Dysfunction</span>
                 <div className="nav-active-btn">The Metabolic Syndrome</div>
-                <span className="nav-inactive-btn" onClick={() => setShowOverview(true)} style={{cursor: 'pointer'}}>Test Overview</span>
+                <span className="nav-inactive-btn" onClick={() => switchTo(() => setShowOverview(true))}>Test Overview</span>
               </>
             )}
           </div>
@@ -138,21 +146,21 @@ export default function SubHotspotInfoView({ subHotspotId, categoryData, onClose
             <span className="nav-subtitle">Gut Zoomer:</span>
             {showOverview ? (
               <>
-                <span className="nav-inactive-btn" onClick={() => { setActiveGutTab('permeability'); setShowOverview(false); }} style={{cursor: 'pointer'}}>The Intestinal Permeability Pattern</span>
-                <span className="nav-inactive-btn" onClick={() => { setActiveGutTab('estrogen'); setShowOverview(false); }} style={{cursor: 'pointer'}}>The Estrogen Dominance</span>
+                <span className="nav-inactive-btn" onClick={() => switchTo(() => { setActiveGutTab('permeability'); setShowOverview(false); })}>The Intestinal Permeability Pattern</span>
+                <span className="nav-inactive-btn" onClick={() => switchTo(() => { setActiveGutTab('estrogen'); setShowOverview(false); })}>The Estrogen Dominance</span>
                 <div className="nav-active-btn">Test Overview</div>
               </>
             ) : activeGutTab === 'permeability' ? (
               <>
                 <div className="nav-active-btn">The Intestinal Permeability Pattern</div>
-                <span className="nav-inactive-btn" onClick={() => setActiveGutTab('estrogen')} style={{cursor: 'pointer'}}>The Estrogen Dominance</span>
-                <span className="nav-inactive-btn" onClick={() => setShowOverview(true)} style={{cursor: 'pointer'}}>Test Overview</span>
+                <span className="nav-inactive-btn" onClick={() => switchTo(() => setActiveGutTab('estrogen'))}>The Estrogen Dominance</span>
+                <span className="nav-inactive-btn" onClick={() => switchTo(() => setShowOverview(true))}>Test Overview</span>
               </>
             ) : (
               <>
-                <span className="nav-inactive-btn" onClick={() => setActiveGutTab('permeability')} style={{cursor: 'pointer'}}>The Intestinal Permeability Pattern</span>
+                <span className="nav-inactive-btn" onClick={() => switchTo(() => setActiveGutTab('permeability'))}>The Intestinal Permeability Pattern</span>
                 <div className="nav-active-btn">The Estrogen Dominance</div>
-                <span className="nav-inactive-btn" onClick={() => setShowOverview(true)} style={{cursor: 'pointer'}}>Test Overview</span>
+                <span className="nav-inactive-btn" onClick={() => switchTo(() => setShowOverview(true))}>Test Overview</span>
               </>
             )}
           </div>
@@ -187,7 +195,7 @@ export default function SubHotspotInfoView({ subHotspotId, categoryData, onClose
             </span>
             {showOverview ? (
               <>
-                <span className="nav-inactive-btn" onClick={() => setShowOverview(false)} style={{cursor: 'pointer'}}>
+                <span className="nav-inactive-btn" onClick={() => switchTo(() => setShowOverview(false))}>
                   {subData.id === 'neurotrans' ? 'The Neurotransmitter' :
                    subData.id === 'hormone_z' ? 'The Hormone Deficiency' :
                    subData.id === 'toxins_panel' ? 'The Total Tox Burden' :
@@ -207,7 +215,7 @@ export default function SubHotspotInfoView({ subHotspotId, categoryData, onClose
                    subData.id === 'neural' ? 'The Mild Demyelination' :
                    subData.label || 'The Mild Demyelination'}
                 </div>
-                <span className="nav-inactive-btn" onClick={() => setShowOverview(true)} style={{cursor: 'pointer'}}>Test Overview</span>
+                <span className="nav-inactive-btn" onClick={() => switchTo(() => setShowOverview(true))}>Test Overview</span>
               </>
             )}
           </div>
@@ -240,7 +248,7 @@ export default function SubHotspotInfoView({ subHotspotId, categoryData, onClose
       {/* Left Main Content Panel */}
       <div className="sub-info-side-panel">
         <div className="panel-scroll-area" ref={scrollerRef}>
-          <div className="scroll-content-wrapper" ref={contentRef}>
+          <div key={panelKey} className="scroll-content-wrapper panel-transition-enter" ref={contentRef}>
             {showOverview ? (
               subData.id === 'neural' ? <NeuralOverviewPanel activeVideo={activeVideo} /> :
               subData.id === 'neurotrans' ? <NeurotransmitterOverviewPanel activeVideo={activeVideo} /> :

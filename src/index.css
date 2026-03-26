@@ -1682,6 +1682,50 @@ body,
   opacity: 0.6;
   margin-left: 12px;
   cursor: pointer;
+  transition: opacity 0.25s ease, color 0.25s ease;
+  padding: 8px 16px;
+  border-radius: 30px;
+}
+
+.nav-inactive-btn:hover {
+  opacity: 1;
+  color: #0077ff;
+}
+
+.nav-active-btn {
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+/* Smooth panel content animation */
+@keyframes panel-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.panel-transition-enter {
+  animation: panel-slide-in 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Nav pill tab swap animation */
+@keyframes tab-pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.88) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.nav-active-btn {
+  animation: tab-pop-in 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* ========================================================= */
