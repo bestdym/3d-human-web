@@ -24,11 +24,12 @@
 html,
 body,
 #root {
-  min-height: 100vh;
+  width: 100vw;
+  height: 100dvh;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
-  /* Allow vertical scrolling while preventing horizontal overflow */
+  overflow: hidden;
+  /* Lock viewport scrolling completely */
   font-family: 'Inter', sans-serif;
   background: linear-gradient(135deg, var(--bg-grad-1) 0%, var(--bg-grad-2) 55%, var(--bg-grad-3) 100%);
 }
@@ -2254,7 +2255,7 @@ body,
   }
 
   .panel-scroll-area {
-    padding: 65vh 0 0 0;
+    padding: 60vh 0 0 0;
     height: 100%;
     /* Fills parent 100dvh */
     overflow-y: auto;

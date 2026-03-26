@@ -274,7 +274,9 @@ export default function Explore() {
   const [hoveredOrgan, setHoveredOrgan] = useState(null)
   const [activeSubHotspot, setActiveSubHotspot] = useState(null)
   const [loaded, setLoaded] = useState(false)
-  const [isMobileView, setIsMobileView] = useState(false)
+  const [isMobileView, setIsMobileView] = useState(
+    typeof window !== 'undefined' ? window.innerWidth <= 768 : false
+  )
 
   useEffect(() => {
     const handleResize = () => setIsMobileView(window.innerWidth <= 768)
