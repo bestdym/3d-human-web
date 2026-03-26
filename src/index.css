@@ -263,7 +263,8 @@ body,
   width: 100vw;
   height: 100dvh;
   touch-action: none;
-  z-index: 1; /* Explicit z-index to manage stacking context */
+  z-index: 1;
+  /* Explicit z-index to manage stacking context */
   /* Disable pull-to-refresh and page swiping */
   /* Force a separate GPU compositing layer so backdrop-filter on overlaid
      CSS elements does NOT bleed into / blur the WebGL canvas. This is
@@ -1567,7 +1568,6 @@ body,
   width: 45vw;
   max-width: 600px;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(240, 245, 255, 0.85) 100%);
-  backdrop-filter: blur(20px);
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-right: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 0 40px 0 0;
@@ -1707,6 +1707,7 @@ body,
     opacity: 0;
     transform: translateY(18px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1723,6 +1724,7 @@ body,
     opacity: 0;
     transform: scale(0.88) translateY(4px);
   }
+
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
