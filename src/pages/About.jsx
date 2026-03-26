@@ -33,13 +33,13 @@ export default function About() {
   return (
     <PageTransition>
       <div className="about-page-container">
-        {/* Decorative Background Blobs */}
+        
         <div className="about-bg-blob blob-1"></div>
         <div className="about-bg-blob blob-2"></div>
         
         <div className="about-content-wrapper">
           
-          {/* Hero Section */}
+          
           <div className="about-hero" ref={heroRef}>
             <div className="about-badge reveal-item">Discover SomaLab</div>
             <div className="hero-content">
@@ -55,7 +55,7 @@ export default function About() {
             </div>
           </div>
 
-          {/* Main Story Section */}
+          
           <div className="about-story-grid" ref={storyRef}>
             <div className="story-text-card glass-panel reveal-item">
               <h2 className="story-heading">Empowering Through Knowledge</h2>
@@ -74,7 +74,7 @@ export default function About() {
             </div>
           </div>
 
-          {/* Core Pillars */}
+          
           <motion.div 
             className="about-pillars-section"
             variants={containerVariants}

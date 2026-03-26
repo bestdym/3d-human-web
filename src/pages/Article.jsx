@@ -58,7 +58,7 @@ const ARTICLES_DATA = {
       "Furthermore, chronic inflammation acts as 'background noise' that distracts the immune system. Resolving chronic inflammation through anti-inflammatory diets, emotional regulation, and avoiding environmental toxins frees up immunological resources to fight genuine threats and clear senescent (aging) cells more efficiently."
     ]
   },
-  // Default fallback
+  
   "default": {
     title: "Understanding Your Anatomy",
     category: "General Health",
@@ -86,7 +86,7 @@ export default function Article() {
   return (
     <PageTransition>
       <div className="article-reading-page">
-        {/* Dynamic Background Blob */}
+        
         <div className={`article-bg-blob bg-gradient-to-br ${data.color} opacity-20`}></div>
 
         <div className="article-container">

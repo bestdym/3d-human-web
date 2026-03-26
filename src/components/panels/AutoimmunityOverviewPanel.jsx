@@ -54,7 +54,7 @@ export default function AutoimmunityOverviewPanel({ activeVideo }) {
           <li>Monitors disease activity and treatment response</li>
         </ul>
         
-        {/* padding at the bottom */}
+        
         <div style={{height: '100px'}}></div>
       </div>
     </>

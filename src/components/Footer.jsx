@@ -9,10 +9,10 @@ export default function Footer() {
       <div className="footer-glow-line"></div>
       <div className="footer-container">
         
-        {/* Top Section */}
+        
         <div className="footer-top">
           
-          {/* Brand Column */}
+          
           <div className="footer-brand-col">
             <Link to="/" className="footer-logo">
               <img src="/somalab_logo.png" alt="SomaLab" className="footer-logo-img" />
@@ -37,7 +37,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Links Column 1 */}
+          
           <div className="footer-links-col">
             <h4 className="footer-heading">Platform</h4>
             <ul className="footer-link-list">
@@ -47,7 +47,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Links Column 2 */}
+          
           <div className="footer-links-col">
             <h4 className="footer-heading">Resources</h4>
             <ul className="footer-link-list">
@@ -57,7 +57,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact Column */}
+          
           <div className="footer-contact-col">
             <h4 className="footer-heading">Get in Touch</h4>
             <ul className="footer-contact-list">
@@ -74,7 +74,7 @@ export default function Footer() {
 
         </div>
 
-        {/* Bottom Section */}
+        
         <div className="footer-bottom">
           <p className="copyright">&copy; {new Date().getFullYear()} SomaLab. All rights reserved.</p>
           <div className="footer-legal-links">

@@ -56,7 +56,7 @@ export default function NeurotransmitterOverviewPanel({ activeVideo }) {
           <li>Identifies specific imbalances driving mental health symptoms</li>
         </ul>
         
-        {/* padding at the bottom */}
+        
         <div style={{height: '100px'}}></div>
       </div>
     </>

@@ -54,7 +54,7 @@ export default function GutOverviewPanel({ activeVideo }) {
           <li>Provides specific probiotic and prebiotic recommendations</li>
         </ul>
         
-        {/* padding at the bottom */}
+        
         <div style={{height: '100px'}}></div>
       </div>
     </>

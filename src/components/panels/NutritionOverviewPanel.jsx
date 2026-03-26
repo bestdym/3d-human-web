@@ -50,7 +50,7 @@ export default function NutritionOverviewPanel({ activeVideo }) {
           <li>Identifies both deficiencies and functional insufficiencies</li>
         </ul>
         
-        {/* padding at the bottom */}
+        
         <div style={{height: '100px'}}></div>
       </div>
     </>

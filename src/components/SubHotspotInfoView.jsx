@@ -24,7 +24,7 @@ import GutOverviewPanel from './panels/GutOverviewPanel'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// Master Library pemetaan Video berdasarkan ID dari subHotspot
+
 const VIDEO_MAP = {
   'oxi': { src: '/models/OxidativeStressV03.mp4', label: 'RNA\nDamage' },
   'toxins_panel': { src: '/models/ToxinsV03.mp4', label: 'Toxins\nLoad' },
@@ -49,7 +49,7 @@ export default function SubHotspotInfoView({ subHotspotId, categoryData, onClose
   const [showOverview, setShowOverview] = useState(false)
   const [panelKey, setPanelKey] = useState(0)
 
-  // Helper to change tab/overview and trigger animation
+  
   const switchTo = (fn) => {
     fn()
     setPanelKey(k => k + 1)
@@ -62,7 +62,7 @@ export default function SubHotspotInfoView({ subHotspotId, categoryData, onClose
     setPanelKey(k => k + 1)
   }, [subHotspotId])
 
-  // Explicit Video Loader to aggressively bypass Browser AutoPlay safety blocks
+  
   useEffect(() => {
     if (activeVideo && videoElementRef.current) {
       videoElementRef.current.src = activeVideo.src
@@ -77,9 +77,9 @@ export default function SubHotspotInfoView({ subHotspotId, categoryData, onClose
     }
   }, [activeVideo])
 
-  // GSAP Scroll-Triggered Morphing Logic
+  
   useEffect(() => {
-    // Apabila tombol tidak memiliki mapping video, animasi timeline dilewati
+    
     if (!activeVideo || !videoRef.current || !wrapperRef.current || !labelRef.current || !scrollerRef.current || !contentRef.current) return
 
     const tl = gsap.timeline({
@@ -92,12 +92,12 @@ export default function SubHotspotInfoView({ subHotspotId, categoryData, onClose
       }
     })
 
-    // Phase 1: Grow & Morph dari Circle 250px ke Rounded Rectangle 45vw
+    
     tl.to(wrapperRef.current, { width: '45vw', height: '75vh', right: '4%', duration: 1, ease: 'power1.inOut' }, 'grow')
       .to(videoRef.current, { borderRadius: '32px', duration: 1, ease: 'power1.inOut' }, 'grow')
       .to(labelRef.current, { bottom: '25%', left: '15%', scale: 1.5, duration: 1, ease: 'power1.inOut' }, 'grow')
 
-    // Phase 2: Shrink & Morph kembali menjadi Circle
+    
     tl.to(wrapperRef.current, { width: '250px', height: '250px', right: '18%', duration: 1, ease: 'power1.inOut' }, 'shrink')
       .to(videoRef.current, { borderRadius: '50%', duration: 1, ease: 'power1.inOut' }, 'shrink')
       .to(labelRef.current, { bottom: '8%', left: '8%', scale: 1.0, duration: 1, ease: 'power1.inOut' }, 'shrink')
@@ -245,7 +245,7 @@ export default function SubHotspotInfoView({ subHotspotId, categoryData, onClose
         </div>
       )}
 
-      {/* Left Main Content Panel */}
+      
       <div className={isMobile ? "sub-info-side-panel-mobile" : "sub-info-side-panel-desktop"}>
         <div className="panel-scroll-area" ref={scrollerRef}>
           <div key={panelKey} className="scroll-content-wrapper panel-transition-enter" ref={contentRef}>

@@ -148,7 +148,7 @@ export default function HormonePanel({ onGoToOverview, activeVideo }) {
           <div className="protocol-card">
             <div className="protocol-header">
               <span className="protocol-name">DHEA</span>
-              {/* No dosage provided in user input */}
+              
             </div>
             <ul className="protocol-bullets">
               <li>DHEA supplements boost DHEA levels by directly increasing the availability of this hormone in the bloodstream.</li>
@@ -169,7 +169,7 @@ export default function HormonePanel({ onGoToOverview, activeVideo }) {
           </div>
         </div>
         
-        {/* padding at the bottom */}
+        
         <div style={{height: '100px'}}></div>
       </div>
     </>

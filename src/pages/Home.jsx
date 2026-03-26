@@ -38,7 +38,6 @@ export default function Home() {
   return (
     <PageTransition>
       <div className="home-scroll-page">
-        {/* HERO SECTION */}
         <div className="home-page-container">
           <ParticleBg />
           <div className="home-bg-glow"></div>
@@ -114,8 +113,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        {/* FEATURES SECTION */}
         <section className="discover-section">
           <motion.div 
             className="discover-content"
@@ -148,8 +145,6 @@ export default function Home() {
             </div>
           </motion.div>
         </section>
-
-        {/* Global Footer */}
         <Footer />
       </div>
     </PageTransition>

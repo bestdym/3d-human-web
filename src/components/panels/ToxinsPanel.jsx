@@ -179,7 +179,7 @@ export default function ToxinsPanel({ onGoToOverview, activeVideo }) {
           </div>
         </div>
         
-        {/* padding at the bottom */}
+        
         <div style={{height: '100px'}}></div>
       </div>
     </>

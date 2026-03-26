@@ -86,7 +86,7 @@ const CATEGORIES = [
     icon: '🧠',
     position: [0, 1.75, 0.05],
     shows: ['brain'],
-    mobileOffsetY: 0.1, // Look even lower to push the brain up
+    mobileOffsetY: 0.1, 
     subHotspots: [
       { id: 'neural', label: 'Neural Zoomer', position: [0.08, 1.83, 0.15], focusOrgan: 'brain' },
       { id: 'neurotrans', label: 'Neurotransmitters', position: [0.08, 1.71, 0.15], focusOrgan: 'brain' }
@@ -98,9 +98,9 @@ const CATEGORIES = [
     icon: '♂️',
     position: [0, 1.21, 0.04],
     shows: ['brain', 'kidney'],
-    zoomOffset: 4.8, // Ditarik lebih jauh lagi mundurnya karena otak+ginjal terlalu besar pas di-zoom
+    zoomOffset: 4.8, 
     subHotspots: [
-      { id: 'hormone_z', label: 'Hormones Zoomer', position: [0.12, 1.65, 0.15], focusOrgan: 'brain' } // Pituitary gland
+      { id: 'hormone_z', label: 'Hormones Zoomer', position: [0.12, 1.65, 0.15], focusOrgan: 'brain' } 
     ]
   },
   {
@@ -109,7 +109,7 @@ const CATEGORIES = [
     icon: '🤍',
     position: [0, 1.1, 0.10],
     shows: ['heart'],
-    mobileOffsetY: 0.1, // Push heart up slightly
+    mobileOffsetY: 0.1, 
     subHotspots: [
       { id: 'cardio', label: 'Cardio Zoomer', position: [0.08, 1.15, 0.15], focusOrgan: 'heart' }
     ]
@@ -120,7 +120,7 @@ const CATEGORIES = [
     icon: '🧪',
     position: [-0.07, 0.90, 0.1],
     shows: ['liver', 'kidney'],
-    mobileOffsetY: 0, // Push toxins panel up slightly
+    mobileOffsetY: 0, 
     subHotspots: [
       { id: 'toxins_panel', label: 'Toxins Panel', position: [-0.15, 0.72, 0.15], focusOrgan: 'liver' }
     ]
@@ -129,10 +129,10 @@ const CATEGORIES = [
     id: 'gut_health',
     label: 'Gut Health',
     icon: '🦠',
-    position: [-0.05, 0.65, 0.1], // Pusat kamera dinaikkan ke atas
+    position: [-0.05, 0.65, 0.1], 
     shows: ['intestine', 'kidney', 'liver'],
-    mobileOffsetY: -0.1, // Push toxins panel up slightly
-    zoomOffset: 2, // Ditarik mundur sedikit agar gabungan organ saluran cerna tidak kepotong
+    mobileOffsetY: -0.1, 
+    zoomOffset: 2, 
     subHotspots: [
       { id: 'food', label: 'Food Sensitivity', position: [-0.05, 0.82, 0.12], focusOrgan: 'intestine' },
       { id: 'gutzoomer', label: 'Gut Zoomer', position: [0.08, 0.65, 0.12], focusOrgan: 'intestine' }
@@ -144,8 +144,8 @@ const CATEGORIES = [
     icon: '🧬',
     position: [-0.50, 0.85, -0.1],
     shows: ['dna'],
-    mobileOffsetX: -0.1, // Geser kamera lebih ke kiri agar DNA yang melengkung bisa pas di tengah
-    mobileOffsetY: 0.1, // Pindah fokus kamera ke bawah sedikit supaya DNA lebih ke tengah dan tidak terpotong tombol atas
+    mobileOffsetX: -0.1, 
+    mobileOffsetY: 0.1, 
     subHotspots: [
       { id: 'genetics_test', label: 'Genetics Testing Suite', position: [-0.38, 0.85, 0.0], focusOrgan: 'dna' }
     ]
@@ -155,10 +155,10 @@ const CATEGORIES = [
     label: 'Longevity',
     icon: '🧫',
     position: [0.55, 0.85, 0.0],
-    mobileOffsetX: 0, // Geser kamera lebih ke kiri agar DNA yang melengkung bisa pas di tengah
+    mobileOffsetX: 0, 
     mobileOffsetY: 0.2,
     shows: ['cell'],
-    zoomOffset: 0.25, // Diubah ke 0.25 karena pembatas minimum jarak kamera sudah di lepas
+    zoomOffset: 0.25, 
     subHotspots: [
       { id: 'oxi', label: 'Oxidative Stress', position: [0.54, 0.85, 0.08], focusOrgan: 'cell' },
       { id: 'nutri', label: 'Nutrition', position: [0.53, 0.83, 0.08], focusOrgan: 'cell' },
@@ -167,7 +167,7 @@ const CATEGORIES = [
   }
 ]
 
-// Component to handle smooth camera flying to active targets
+
 function CameraAnimator({ activeCategoryId, activeSubHotspotId, categories, controlsRef }) {
   const targetPos = useRef(new THREE.Vector3(0, 0.4, 5.0))
   const targetLook = useRef(new THREE.Vector3(0, 0.8, 0))
@@ -185,15 +185,15 @@ function CameraAnimator({ activeCategoryId, activeSubHotspotId, categories, cont
 
       if (activeSubHotspotId) {
         if (isMobile) {
-          // Mobile: organ stays centered — no X-shift except explicit per-organ horizontal custom shifts.
+          
           targetLook.current.set(activeData.position[0] + customOffsetX, activeData.position[1] - 0.25 + customOffsetY, activeData.position[2])
-          // Zoom in closer (1.1) so the organ looks big and clear. Keep pitch angle consistent (-0.05 * 1.1)
+          
           targetPos.current.set(activeData.position[0] + customOffsetX, activeData.position[1] - 0.25 + customOffsetY - 0.055, activeData.position[2] + zoomZ * 1.1)
         } else {
           const dynamicShift = 0.18 * zoomZ
           const shiftX = Math.min(Math.max(dynamicShift, 0.05), 0.20)
           targetLook.current.set(activeData.position[0] - shiftX, activeData.position[1], activeData.position[2])
-          // Keep pitch angle consistent. Z scales by 0.44, so Y should scale by 0.44 (-0.05 * 0.44 = -0.022)
+          
           targetPos.current.set(activeData.position[0] - shiftX, activeData.position[1] - 0.022, activeData.position[2] + zoomZ * 0.44)
         }
       } else {
@@ -201,7 +201,7 @@ function CameraAnimator({ activeCategoryId, activeSubHotspotId, categories, cont
         targetPos.current.set(activeData.position[0], activeData.position[1] - 0.05, activeData.position[2] + zoomZ)
       }
     } else {
-      // In overview mode, aim camera slightly higher on mobile to ensure the head isn't clipped
+      
       const overviewY = isMobile ? 1.05 : 0.8
       targetLook.current.set(0, overviewY, 0)
       targetPos.current.set(0, overviewY - 0.4, 5.0)
@@ -247,16 +247,16 @@ function ParallaxGroup({ isZoomed, children }) {
   useFrame((state, delta) => {
     if (!groupRef.current) return
 
-    // Kunci rotasi ke 0,0,0 (diam total) kalau lagi nge-zoom organ biar button-nya nggak lari-lari
+    
     if (isZoomed) {
       easing.dampE(groupRef.current.rotation, [0, 0, 0], 0.15, delta)
       return
     }
 
-    // Goyangan parallax tipis pas layar utama Explore penuh
+    
     const factor = 35
 
-    // Y inverted for natural up/down tilt, X for left/right
+    
     const targetX = (state.pointer.y * Math.PI) / factor
     const targetY = (state.pointer.x * Math.PI) / factor
 
@@ -289,7 +289,7 @@ export default function Explore() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  // Custom artificial delay to let user admire the splash screen
+  
   const [minDelayPassed, setMinDelayPassed] = useState(false)
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -302,12 +302,12 @@ export default function Explore() {
 
   const controlsRef = useRef()
 
-  // Background Music BGM Logic (Web Audio API to bypass IDM download hijackers)
+  
   const [isSoundOn, setIsSoundOn] = useState(true)
   const audioCtxRef = useRef(null)
   const isMusicLoaded = useRef(false)
 
-  // Auto-start music when app becomes ready
+  
   useEffect(() => {
     if (!isAppReady) return
     const autoPlay = async () => {
@@ -324,7 +324,7 @@ export default function Explore() {
         sourceNode.connect(ctx.destination)
         sourceNode.start(0)
         isMusicLoaded.current = true
-        // ctx starts in 'running' state — music plays immediately
+        
       } catch (e) {
         console.warn("BGM autoplay failed (browser policy):", e)
         setIsSoundOn(false)
@@ -344,7 +344,7 @@ export default function Explore() {
     }
   }
 
-  // Handle Tab Switch (Pause Audio strictly via AudioContext suspension)
+  
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (!audioCtxRef.current || !isMusicLoaded.current) return
@@ -358,19 +358,19 @@ export default function Explore() {
     return () => document.removeEventListener('visibilitychange', handleVisibilityChange)
   }, [isSoundOn])
 
-  // Navigation Logic
+  
   const activeIndex = activeOrgan ? CATEGORIES.findIndex(c => c.id === activeOrgan) : -1
   const prevCat = activeIndex <= 0 ? CATEGORIES[CATEGORIES.length - 1] : CATEGORIES[activeIndex - 1]
   const nextCat = activeIndex >= CATEGORIES.length - 1 || activeIndex === -1 ? CATEGORIES[0] : CATEGORIES[activeIndex + 1]
 
   const handlePrev = () => {
     setActiveOrgan(prevCat.id);
-    setHoveredOrgan(null); // Clear stuck hover state on touch devices
+    setHoveredOrgan(null); 
   }
   
   const handleNext = () => {
     setActiveOrgan(nextCat.id);
-    setHoveredOrgan(null); // Clear stuck hover state on touch devices
+    setHoveredOrgan(null); 
   }
 
   const closeSubHotspot = () => setActiveSubHotspot(null)
@@ -378,16 +378,16 @@ export default function Explore() {
 
   return (
     <div className={`app-wrapper explore-page${activeSubHotspot ? ' subhotspot-active' : ''}`}>
-      {/* SplashScreen Preloader Overlay */}
+      
       <SplashScreen isLoading={!isAppReady} />
 
-      {/* Crosshair cursor – top of everything, only show when loaded */}
+      
       {isAppReady && <CrosshairCursor />}
 
-      {/* Animated bubble gradient background */}
+      
       <BubbleBg showBubbles={!activeOrgan} />
 
-      {/* Logo */}
+      
       <div className="logo">
         <div className="logo-icon">
           <img src="/somalab_logo.png" alt="SomaLab" style={{ height: '32px', objectFit: 'contain' }} />
@@ -395,16 +395,16 @@ export default function Explore() {
         <div className="logo-text">Soma<span>Lab</span></div>
       </div>
 
-      {/* ══ DESKTOP LAYOUT ══ */}
+      
 
-      {/* Floating Home Button – desktop only */}
+      
       {!activeOrgan && (
         <button className="home-btn-float desktop-only" onClick={() => navigate('/')} title="Kembali ke Landing Page">
           <Home size={22} strokeWidth={2.5} />
         </button>
       )}
 
-      {/* Sex toggle header – desktop only */}
+      
       {!activeSubHotspot && (
         <div className="header explore-header desktop-only">
           <div className="sex-toggle">
@@ -424,7 +424,7 @@ export default function Explore() {
         </div>
       )}
 
-      {/* Back to Body button – desktop only */}
+      
       <div className={`back-zoom-overlay desktop-only ${activeOrgan && !activeSubHotspot ? 'visible' : ''}`}>
         <button className="back-zoom-btn" onClick={closeOrganZoom}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
@@ -432,7 +432,7 @@ export default function Explore() {
         </button>
       </div>
 
-      {/* Sound toggle – desktop only */}
+      
       <div className="footer-left desktop-only">
         <div className="sound-toggle" onClick={toggleSound} style={{ cursor: 'pointer' }}>
           {isSoundOn ? (
@@ -450,10 +450,10 @@ export default function Explore() {
         </div>
       </div>
 
-      {/* ══ MOBILE LAYOUT — Unified Control Pill ══ */}
+      
       {!activeSubHotspot && (
         <div className="mobile-ctrl-pill mobile-only">
-          {/* Left icon: Back (when zoomed) or Home (when not) */}
+          
           {activeOrgan ? (
             <button className="mob-icon-btn" onClick={closeOrganZoom} aria-label="Back to body">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -466,10 +466,10 @@ export default function Explore() {
             </button>
           )}
 
-          {/* Divider */}
+          
           <div className="mob-divider" />
 
-          {/* Sex toggle — flat buttons inside the pill */}
+          
           <button
             className={`mob-sex-btn${sex === 'female' ? ' active' : ''}`}
             onClick={() => setSex('female')}
@@ -489,10 +489,10 @@ export default function Explore() {
             Male
           </button>
 
-          {/* Divider */}
+          
           <div className="mob-divider" />
 
-          {/* Music icon */}
+          
           <button
             className={`mob-icon-btn mob-music-btn ${isSoundOn ? 'music-on' : 'music-off'}`}
             onClick={toggleSound}
@@ -512,7 +512,7 @@ export default function Explore() {
         </div>
       )}
 
-      {/* Dynamic Content based on active state */}
+      
       <Sidebar
         organs={CATEGORIES}
         activeOrgan={activeOrgan}
@@ -520,7 +520,7 @@ export default function Explore() {
         onHover={setHoveredOrgan}
       />
 
-      {/* THREE.js Canvas for Body Model */}
+      
       <div className="canvas-container">
         <Canvas
           camera={{ position: [0, 0.4, 5.0], fov: 38 }}
@@ -572,7 +572,7 @@ export default function Explore() {
               </group>
             </ParallaxGroup>
 
-            {/* Strictly disable post-processing entirely on mobile to isolate the Prod blur bug and save GPU */}
+            
             {!isMobileView ? (
               <EffectComposer>
                 <Bloom
@@ -592,12 +592,12 @@ export default function Explore() {
               enableRotate={false}
               minPolarAngle={Math.PI * 0.1}
               maxPolarAngle={Math.PI * 0.9}
-              // Removed the restricting 1.2 minDistance to allow extreme zoom on cell
+              
               minDistance={0.15}
               maxDistance={3.8}
               autoRotate={!activeOrgan && !hoveredOrgan}
               autoRotateSpeed={0.4}
-              // Sighted the pivot target at the chest level
+              
               target={[0, 0.8, 0]}
             />
           </Suspense>
@@ -608,7 +608,7 @@ export default function Explore() {
         Created BY <strong>Team WIWYM.</strong>
       </div>
 
-      {/* Main Glass Bottom Bar */}
+      
       <div className={`bottom-bar-container ${activeOrgan && !activeSubHotspot ? 'visible' : ''}`}>
         <div className="bottom-bar-glass">
           <button className="nav-action-btn solid mobile-only" onClick={handlePrev}>
@@ -651,7 +651,7 @@ export default function Explore() {
         </div>
       </div>
 
-      {/* Sub-Hotspot Info Sidebar */}
+      
       {activeSubHotspot && (
         <SubHotspotInfoView
           subHotspotId={activeSubHotspot}

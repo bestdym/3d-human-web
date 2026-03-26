@@ -55,7 +55,7 @@ export default function Contact() {
     <PageTransition>
       <div className="contact-page-container">
         
-        {/* Decorative Background Blobs */}
+        
         <div className="contact-bg-blob blob-c"></div>
         <div className="contact-bg-blob blob-d"></div>
 
@@ -73,7 +73,7 @@ export default function Contact() {
             viewport={{ once: true, margin: "-100px" }}
           >
             
-            {/* Contact Form */}
+            
             <motion.div className="contact-form-card glass-panel" variants={itemVariants}>
               <h2 className="form-heading"><MessageSquare className="inline-icon" /> Send a Message</h2>
               <form className="contact-form" onSubmit={handleWhatsAppRedirect}>
@@ -101,7 +101,7 @@ export default function Contact() {
               </form>
             </motion.div>
 
-            {/* Contact Info */}
+            
             <div className="contact-info-panel">
               <motion.div className="info-card glass-panel" variants={itemVariants}>
                 <div className="info-icon-wrapper"><MapPin size={28} /></div>

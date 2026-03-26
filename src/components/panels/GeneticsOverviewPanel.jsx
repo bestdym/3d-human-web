@@ -53,7 +53,7 @@ export default function GeneticsOverviewPanel({ activeVideo }) {
           <li>Guides personalized supplementation and lifestyle</li>
         </ul>
         
-        {/* padding at the bottom */}
+        
         <div style={{height: '100px'}}></div>
       </div>
     </>

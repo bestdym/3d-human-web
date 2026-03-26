@@ -9,7 +9,7 @@ import { Environment, Float, useGLTF } from '@react-three/drei';
 import useReveal from '../hooks/useReveal';
 import * as THREE from 'three';
 
-// 3D Model Component for Cards
+
 function CardModel({ path, scale, position, rotation, color, emissive }) {
   const { scene } = useGLTF(path)
   const ref = useRef()
@@ -270,7 +270,7 @@ export default function Content() {
     <PageTransition>
       <div className="content-page-container">
 
-        {/* Decorative Background */}
+        
         <div className="content-bg-blob blob-a"></div>
         <div className="content-bg-blob blob-b"></div>
 
@@ -325,7 +325,7 @@ export default function Content() {
           ))}
         </motion.div>
 
-        {/* Modal Overlay using Framer Motion */}
+        
         <AnimatePresence>
           {selectedArticle && (
             <div className="modal-container">
@@ -410,7 +410,7 @@ export default function Content() {
             text-align: center;
           }
 
-          /* Utility Colors for Icons */
+          
           .text-rose-500 { color: #f43f5e; }
           .text-purple-500 { color: #a855f7; }
           .text-sky-500 { color: #0ea5e9; }
@@ -418,7 +418,7 @@ export default function Content() {
           .text-amber-500 { color: #f59e0b; }
           .text-blue-500 { color: #3b82f6; }
 
-          /* Bento Layout */
+          
           .bento-grid-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);

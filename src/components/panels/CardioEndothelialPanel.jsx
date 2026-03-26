@@ -164,7 +164,7 @@ export default function CardioEndothelialPanel({ onGoToOverview, activeVideo }) 
           </div>
         </div>
         
-        {/* padding at the bottom */}
+        
         <div style={{height: '100px'}}></div>
       </div>
     </>

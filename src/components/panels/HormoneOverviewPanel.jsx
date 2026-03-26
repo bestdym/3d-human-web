@@ -56,7 +56,7 @@ export default function HormoneOverviewPanel({ activeVideo }) {
           <li>Identifies endocrine disruptors interfering with hormone function</li>
         </ul>
         
-        {/* padding at the bottom */}
+        
         <div style={{height: '100px'}}></div>
       </div>
     </>

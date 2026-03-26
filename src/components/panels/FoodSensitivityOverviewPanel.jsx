@@ -54,7 +54,7 @@ export default function FoodSensitivityOverviewPanel({ activeVideo }) {
           <li>Tests food additives often overlooked in other panels</li>
         </ul>
         
-        {/* padding at the bottom */}
+        
         <div style={{height: '100px'}}></div>
       </div>
     </>
