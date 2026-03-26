@@ -15,6 +15,12 @@ import NeurotransmitterOverviewPanel from './panels/NeurotransmitterOverviewPane
 import HormoneOverviewPanel from './panels/HormoneOverviewPanel'
 import CardioOverviewPanel from './panels/CardioOverviewPanel'
 import ToxinsOverviewPanel from './panels/ToxinsOverviewPanel'
+import OxidativeStressOverviewPanel from './panels/OxidativeStressOverviewPanel'
+import NutritionOverviewPanel from './panels/NutritionOverviewPanel'
+import AutoimmunityOverviewPanel from './panels/AutoimmunityOverviewPanel'
+import GeneticsOverviewPanel from './panels/GeneticsOverviewPanel'
+import FoodSensitivityOverviewPanel from './panels/FoodSensitivityOverviewPanel'
+import GutOverviewPanel from './panels/GutOverviewPanel'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -109,9 +115,8 @@ export default function SubHotspotInfoView({ subHotspotId, categoryData, onClose
             <span className="nav-subtitle">Cardio Zoomer:</span>
             {showOverview ? (
               <>
-                <span className="nav-inactive-btn" onClick={() => setShowOverview(false)} style={{cursor: 'pointer'}}>
-                  {activeCardioTab === 'endothelial' ? 'The Endothelial Dysfunction' : 'The Metabolic Syndrome'}
-                </span>
+                <span className="nav-inactive-btn" onClick={() => { setActiveCardioTab('endothelial'); setShowOverview(false); }} style={{cursor: 'pointer'}}>The Endothelial Dysfunction</span>
+                <span className="nav-inactive-btn" onClick={() => { setActiveCardioTab('metabolic'); setShowOverview(false); }} style={{cursor: 'pointer'}}>The Metabolic Syndrome</span>
                 <div className="nav-active-btn">Test Overview</div>
               </>
             ) : activeCardioTab === 'endothelial' ? (
@@ -133,9 +138,8 @@ export default function SubHotspotInfoView({ subHotspotId, categoryData, onClose
             <span className="nav-subtitle">Gut Zoomer:</span>
             {showOverview ? (
               <>
-                <span className="nav-inactive-btn" onClick={() => setShowOverview(false)} style={{cursor: 'pointer'}}>
-                  {activeGutTab === 'permeability' ? 'The Intestinal Permeability Pattern' : 'The Estrogen Dominance'}
-                </span>
+                <span className="nav-inactive-btn" onClick={() => { setActiveGutTab('permeability'); setShowOverview(false); }} style={{cursor: 'pointer'}}>The Intestinal Permeability Pattern</span>
+                <span className="nav-inactive-btn" onClick={() => { setActiveGutTab('estrogen'); setShowOverview(false); }} style={{cursor: 'pointer'}}>The Estrogen Dominance</span>
                 <div className="nav-active-btn">Test Overview</div>
               </>
             ) : activeGutTab === 'permeability' ? (
@@ -151,6 +155,26 @@ export default function SubHotspotInfoView({ subHotspotId, categoryData, onClose
                 <span className="nav-inactive-btn" onClick={() => setShowOverview(true)} style={{cursor: 'pointer'}}>Test Overview</span>
               </>
             )}
+          </div>
+        ) : subData.id === 'nutri' ? (
+          <div className="nav-pill-container">
+            <span className="nav-subtitle">Micronutrient Panel:</span>
+            <div className="nav-active-btn">Test Overview</div>
+          </div>
+        ) : subData.id === 'auto' ? (
+          <div className="nav-pill-container">
+            <span className="nav-subtitle">Autoimmune Zoomer:</span>
+            <div className="nav-active-btn">Test Overview</div>
+          </div>
+        ) : subData.id === 'genetics_test' ? (
+          <div className="nav-pill-container">
+            <span className="nav-subtitle">Genetics Testing Suite:</span>
+            <div className="nav-active-btn">Test Overview</div>
+          </div>
+        ) : subData.id === 'food' ? (
+          <div className="nav-pill-container">
+            <span className="nav-subtitle">Food Sensitivity:</span>
+            <div className="nav-active-btn">Test Overview</div>
           </div>
         ) : (
           <div className="nav-pill-container">
@@ -223,7 +247,21 @@ export default function SubHotspotInfoView({ subHotspotId, categoryData, onClose
               subData.id === 'hormone_z' ? <HormoneOverviewPanel activeVideo={activeVideo} /> :
               subData.id === 'cardio' ? <CardioOverviewPanel activeVideo={activeVideo} /> :
               subData.id === 'toxins_panel' ? <ToxinsOverviewPanel activeVideo={activeVideo} /> :
+              subData.id === 'oxi' ? <OxidativeStressOverviewPanel activeVideo={activeVideo} /> :
+              subData.id === 'nutri' ? <NutritionOverviewPanel activeVideo={activeVideo} /> :
+              subData.id === 'auto' ? <AutoimmunityOverviewPanel activeVideo={activeVideo} /> :
+              subData.id === 'genetics_test' ? <GeneticsOverviewPanel activeVideo={activeVideo} /> :
+              subData.id === 'food' ? <FoodSensitivityOverviewPanel activeVideo={activeVideo} /> :
+              subData.id === 'gutzoomer' ? <GutOverviewPanel activeVideo={activeVideo} /> :
               <div style={{padding: '40px', fontFamily: 'Inter', fontSize: '18px', color: '#1a1a3a'}}>Test overview coming soon...</div>
+            ) : subData.id === 'nutri' ? (
+              <NutritionOverviewPanel activeVideo={activeVideo} />
+            ) : subData.id === 'auto' ? (
+              <AutoimmunityOverviewPanel activeVideo={activeVideo} />
+            ) : subData.id === 'genetics_test' ? (
+              <GeneticsOverviewPanel activeVideo={activeVideo} />
+            ) : subData.id === 'food' ? (
+              <FoodSensitivityOverviewPanel activeVideo={activeVideo} />
             ) : subData.id === 'neurotrans' ? (
               <NeurotransmitterPanel activeVideo={activeVideo} onGoToOverview={() => setShowOverview(true)} />
             ) : subData.id === 'hormone_z' ? (
