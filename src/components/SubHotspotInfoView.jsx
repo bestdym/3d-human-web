@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MildDemyelinationPanel from './panels/MildDemyelinationPanel'
@@ -35,7 +35,7 @@ const VIDEO_MAP = {
   'hormone_z': { src: '/models/Hormones3D.mp4', label: 'Steroid\nPathways' }
 }
 
-export default function SubHotspotInfoView({ subHotspotId, categoryData, onClose }) {
+export default function SubHotspotInfoView({ subHotspotId, categoryData, onClose, isMobile }) {
   const subData = categoryData?.subHotspots?.find(s => s.id === subHotspotId) || {}
   const activeVideo = VIDEO_MAP[subData.id]
   const videoRef = useRef(null)
@@ -246,7 +246,7 @@ export default function SubHotspotInfoView({ subHotspotId, categoryData, onClose
       )}
 
       {/* Left Main Content Panel */}
-      <div className="sub-info-side-panel">
+      <div className={isMobile ? "sub-info-side-panel-mobile" : "sub-info-side-panel-desktop"}>
         <div className="panel-scroll-area" ref={scrollerRef}>
           <div key={panelKey} className="scroll-content-wrapper panel-transition-enter" ref={contentRef}>
             {showOverview ? (

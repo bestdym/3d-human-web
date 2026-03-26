@@ -646,6 +646,7 @@ export default function Explore() {
           subHotspotId={activeSubHotspot}
           categoryData={CATEGORIES.find(c => c.id === activeOrgan)}
           onClose={closeSubHotspot}
+          isMobile={isMobileView}
         />
       )}
     </div>
