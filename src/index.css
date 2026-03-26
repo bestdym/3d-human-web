@@ -2255,7 +2255,7 @@ body,
   }
 
   .panel-scroll-area {
-    padding: 60vh 0 0 0;
+    padding: 65vh 0 0 0;
     height: 100%;
     /* Fills parent 100dvh */
     overflow-y: auto;
