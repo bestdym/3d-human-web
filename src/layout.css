@@ -146,20 +146,54 @@ body {
 
 .cta-button {
   text-decoration: none;
-  background: linear-gradient(135deg, #0077ff 0%, #00bbff 100%);
+  background: linear-gradient(135deg, #0077ff 0%, #00d2ff 50%, #00bbff 100%);
+  background-size: 200% auto;
   color: white;
-  padding: 0.6rem 1.25rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 999px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.9rem;
-  box-shadow: 0 4px 12px rgba(0, 119, 255, 0.25);
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(0, 119, 255, 0.2);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.01em;
+}
+
+.shimmer-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(25deg);
+  transition: all 0.7s;
+  pointer-events: none;
+}
+
+.shimmer-btn:hover::after {
+  left: 150%;
 }
 
 .cta-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 119, 255, 0.35);
+  background-position: right center;
+  box-shadow: 0 8px 20px rgba(0, 119, 255, 0.3);
   color: white;
+}
+
+.cta-button:hover .btn-icon-right {
+  transform: translateX(4px);
 }
 
 /* ─── Global Scroll-Reveal Animations ─── */
@@ -430,20 +464,46 @@ body {
 }
 
 .btn-primary-large {
+  position: relative;
   text-decoration: none;
-  background: linear-gradient(135deg, #0077ff 0%, #00bbff 100%);
+  background: linear-gradient(135deg, #0077ff 0%, #00d2ff 50%, #00bbff 100%);
+  background-size: 200% auto;
   color: white;
-  padding: 1rem 2rem;
+  padding: 1rem 2.2rem;
   border-radius: 999px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.1rem;
-  box-shadow: 0 8px 20px rgba(0, 119, 255, 0.25);
-  transition: transform 0.2s;
+  box-shadow: 0 10px 25px rgba(0, 119, 255, 0.3);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  letter-spacing: 0.02em;
 }
 
 .btn-primary-large:hover {
   transform: translateY(-3px);
+  background-position: right center;
+  box-shadow: 0 15px 35px rgba(0, 119, 255, 0.4);
   color: white;
+}
+
+.btn-primary-large:hover .btn-icon-right {
+  transform: translateX(6px);
+}
+
+.btn-primary-large:active {
+  transform: translateY(-2px) scale(0.98);
+}
+
+.btn-icon-right {
+  margin-left: 10px;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-primary-large:hover .btn-icon-right {
+  transform: translateX(5px);
 }
 
 .btn-secondary-large {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 import '../index.css';
 
 export default function Navbar() {
@@ -53,8 +53,9 @@ export default function Navbar() {
           </div>
 
           <div className="navbar-cta">
-            <Link to="/explore" className="cta-button primary-btn">
-              Start 3D Exploration
+            <Link to="/explore" className="cta-button primary-btn shimmer-btn">
+              <span>Start 3D Exploration</span>
+              <ArrowRight size={18} className="btn-icon-right" />
             </Link>
           </div>
         </div>

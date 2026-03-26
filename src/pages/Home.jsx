@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Environment, Float } from '@react-three/drei';
 import PageTransition from '../components/PageTransition';
@@ -51,8 +52,9 @@ export default function Home() {
                 Interactive 3D visualization provides a profound understanding of the human body. Gain valuable insights into organ systems, identify early biomarkers, and explore complex systemic conditions through our comprehensive, medically-accurate 3D platform.
               </p>
               <div className="home-cta-group reveal-item reveal-delay-3">
-                <Link to="/explore" className="btn-primary-large">
-                  Start 3D Exploration
+                <Link to="/explore" className="btn-primary-large shimmer-btn">
+                  <span>Start 3D Exploration</span>
+                  <ArrowRight size={22} className="btn-icon-right" />
                 </Link>
                 <Link to="/about" className="btn-secondary-large">
                   Learn More
